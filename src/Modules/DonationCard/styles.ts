@@ -9,8 +9,8 @@ export const CardWrapper = styled.div`
 `;
 
 export const CardContentWrapper = styled.div`
-  width: 400px;  // Adjust width as per your design
+  min-width: 400px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  // Optional shadow effect
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.border.radius};
 `;

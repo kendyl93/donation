@@ -7,7 +7,10 @@ const theme = {
         grey: '#F4F8FA'
     },
     fontSize: {
-        regular: BASE_MULTIPLIER * 2,
+        regular: `${BASE_MULTIPLIER * 2}px`,
+    },
+    border: {
+        radius: `${BASE_MULTIPLIER}px`
     },
 };
 
