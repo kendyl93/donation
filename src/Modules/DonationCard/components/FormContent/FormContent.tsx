@@ -1,5 +1,6 @@
-import { Form, Field } from 'react-final-form';
-import { ButtonWrapper, FieldWrapper, FormWrapper, InputWrapper, LabelWrapper, MonthDisplayWrapper, SelectorContentWrapper, SelectorWrapper, YearDisplayWrapper, CurrencySign, InputValueWrapper } from './styles';
+import { Form, Field, FormSpy } from 'react-final-form';
+import { ButtonWrapper, FieldWrapper, FormWrapper, InputWrapper, LabelWrapper, MonthDisplayWrapper, SelectorContentWrapper, SelectorWrapper, YearDisplayWrapper, CurrencySign } from './styles';
+import { useFormState } from '../../context/FormStateContext';
 import { useEffect, useState } from 'react';
 
 
@@ -12,18 +13,25 @@ const formatMoney = (value: any) => {
     return formatter.format(value);
 };
 
-const unformatMoney = (form: any) => (formattedValue: any) => {
-    if (!formattedValue?.target?.value) return formattedValue;
+const unformatMoney = (form: any) => (formattedValue: string) => {
+    if (!formattedValue) return formattedValue;
     // Removing any non-digit characters and parse it to a float
-    console.log({ DUPA: parseFloat(formattedValue?.target.value?.replace(/[^\d.-]/g, '')) })
-    if (parseFloat(formattedValue?.target.value?.replace(/[^\d.-]/g, ''))) {
-        form.change('amount', parseFloat(formattedValue?.target.value?.replace(/[^\d.-]/g, '')));
+    if (parseFloat(formattedValue.toString().replace(/[^\d.-]/g, ''))) {
+        form.change('amount', parseFloat(formattedValue.toString().replace(/[^\d.-]/g, '')));
     }
+};
+
+const unformatMoney2 = (formattedValue: string, source?: string) => {
+
+    if (!formattedValue) return formattedValue;
+    return parseFloat(formattedValue.toString().replace(/[^\d.-]/g, ''));
+
 };
 
 export const FormContent = () => {
     const [monthAndYear, setMonthAndYear] = useState(new Date());
     const [previousButtonDisabled, setPreviousButtonDisabled] = useState(true);
+    const { setFormState } = useFormState();
 
     const months = [
         "January", "February", "March", "April", "May", "June", "July",
@@ -91,7 +99,7 @@ export const FormContent = () => {
                                                 type="text"
                                                 format={formatMoney}
                                                 formatOnBlur
-                                                onFocus={onFocusAmount}
+                                                onFocus={(event: any) => onFocusAmount(event?.target?.value)}
                                                 placeholder="0.00"
                                             />
                                         </InputWrapper>
@@ -110,6 +118,20 @@ export const FormContent = () => {
                                 </SelectorWrapper>
                             </FieldWrapper>
                         </FormWrapper>
+                        <FormSpy
+                            subscription={{ values: true }}
+                            onChange={({ values }) => {
+
+                                if (!values) {
+                                    return;
+                                }
+                                const unformatted = unformatMoney2(values.amount)
+                                console.log({ unformatted })
+                                setFormState({ ...values, amount: unformatted });
+                                debugger;
+                                return values;  // This line is just to satisfy the expected return type
+                            }}
+                        />
                     </form >
                 )
             }}
