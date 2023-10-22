@@ -11,7 +11,7 @@ const Button = styled.button`
     border: none;
     padding: 12px 24px;
     border-radius: ${({ theme }) => theme.spacing}px;
-    font-size: ${({ theme }) => theme.fontSize.regular};
+    font-size: ${({ theme }) => theme.font.baseSize}px;
     cursor: pointer;
     transition: background-color 0.2s;
 
@@ -27,7 +27,7 @@ export const CancelButtonWrapper = styled(Button)`
     color: ${props => props.theme.colors.primary};
 
     &:hover {
-        background-color: ${props => props.theme.colors.grey.default};
+        background-color: ${props => props.theme.colors.gray.default};
     }
 `;
 

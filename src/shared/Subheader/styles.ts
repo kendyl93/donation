@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export const SubheaderWrapper = styled.p`
-  color: ${({ theme }) => theme.colors.grey.dark};
-  font-size: ${({ theme }) => theme.spacing * 2}px;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: ${({ theme }) => theme.font.baseSize * 2}px;
 `;

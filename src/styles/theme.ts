@@ -1,17 +1,20 @@
-const BASE_MULTIPLIER = 8;
 
 const theme = {
-    spacing: BASE_MULTIPLIER,
+    spacing: 8,
+    font: {
+        family: {
+            inter: "'Inter', sans-serif",
+            workSans: "Work Sans",
+        },
+        baseSize: 8
+    },
     colors: {
         primary: "#423C66",
         secondary: "#595D7B",
-        grey: {
-            dark: '#595D7B',
+        gray: {
+            superDark: '#1E2A32',
             primary: '#F4F8FA'
         }
-    },
-    fontSize: {
-        regular: `${BASE_MULTIPLIER * 2}px`,
     },
     breakpoints: {
         mobile: '425px',

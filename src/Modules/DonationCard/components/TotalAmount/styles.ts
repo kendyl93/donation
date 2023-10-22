@@ -3,20 +3,23 @@ import styled from 'styled-components';
 export const TotalAmountWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 0 ${({ theme }) => theme.spacing * 2}px;
+  gap: ${({ theme }) => theme.spacing}px;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-export const LabelWrapper = styled.span`
-  font-size: 20px;
+export const LabelWrapper = styled.div`
+  font-family: ${({ theme }) => theme.font.family.workSans};
+  font-size: ${({ theme }) => theme.font.baseSize * 2.5}px;
+  color: ${({ theme }) => theme.colors.gray.superDark};
   font-weight: 500;
 `;
 
 export const AmountWrapper = styled.span`
-  font-size: 24px;
-  font-weight: bold;
-  color: #4a4a4a;
+  font-family: ${({ theme }) => theme.font.family.inter};
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.font.baseSize * 4}px;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-style: normal;
+  line-height: 1.2;
 `;
