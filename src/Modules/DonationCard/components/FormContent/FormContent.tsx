@@ -1,7 +1,6 @@
 import { Form, Field, FormSpy } from 'react-final-form';
 import { ArrowButtonWrapper, FieldWrapper, FormWrapper, InputWrapper, LabelWrapper, MonthDisplayWrapper, SelectorWrapper, CurrencySign, MonthYearDisplayWrapper, MonthWrapper, YearWrapper } from './styles';
 import { useFormState } from '../../context/FormStateContext';
-import { useEffect, useState } from 'react';
 import { monthNames } from '../../constants';
 import { currentMonthIndex, currentYear } from '../../utils';
 
@@ -32,23 +31,12 @@ const unformatMoney2 = (formattedValue: string, source?: string) => {
 
 export const FormContent = () => {
     const { setFormState } = useFormState();
-    // const [previousButtonDisabled, setPreviousButtonDisabled] = useState(true);
-
-    // useEffect(() => {
-    //     if (monthAndYear.getMonth() === currentMonth && monthAndYear.getFullYear() === currentYear) {
-    //         setPreviousButtonDisabled(true)
-    //     }
-    // }, [monthAndYear])
-
-
-
 
     const onSubmit = (values: any) => {
         console.log("Form values:", values);
     };
 
     const onlyNumbers = (value: string) => {
-        // This will only return numbers, and will ignore any other character.
         return value.replace(/[^\d]/g, '');
     };
 
@@ -69,15 +57,11 @@ export const FormContent = () => {
     return (
         <Form
             onSubmit={onSubmit}
-            initialValues={{ amount: null, monthIndex: new Date().getMonth(), year: new Date().getFullYear() }}
+            initialValues={{ amount: null, monthIndex: currentMonthIndex + 1, year: currentYear }}
             render={({ handleSubmit, form, values: { monthIndex, year } }: any) => {
                 const onFocusAmount = unformatMoney(form);
 
                 const handlePrevious = () => {
-                    if (monthIndex === currentMonthIndex && currentYear && year) {
-                        return;
-                    }
-
                     if (monthIndex === 0) {
                         form.change('monthIndex', 11);
                         form.change('year', year - 1);
@@ -95,7 +79,7 @@ export const FormContent = () => {
                     }
                 };
 
-                const isCurrentMonthAndYear = monthIndex === currentMonthIndex && year === currentYear;
+                const isCurrentMonthAndYear = monthIndex === currentMonthIndex + 1 && year === currentYear;
                 return (
                     <form onSubmit={handleSubmit}>
                         <FormWrapper>
@@ -124,7 +108,7 @@ export const FormContent = () => {
                             <FieldWrapper>
                                 <LabelWrapper>Every month until</LabelWrapper>
                                 <SelectorWrapper>
-                                    <ArrowButtonWrapper title={isCurrentMonthAndYear ? 'Cannot set past date' : 'Previous month'} disabled={isCurrentMonthAndYear} onClick={handlePrevious}>&lt;</ArrowButtonWrapper>
+                                    <ArrowButtonWrapper title={isCurrentMonthAndYear ? 'Only future months are allowed' : 'Previous month'} disabled={isCurrentMonthAndYear} onClick={handlePrevious}>&lt;</ArrowButtonWrapper>
                                     <MonthYearDisplayWrapper>
                                         <MonthWrapper>
                                             {monthNames[monthIndex]}
@@ -142,7 +126,6 @@ export const FormContent = () => {
                         <FormSpy
                             subscription={{ values: true }}
                             onChange={({ values }) => {
-                                console.log({ subsc: values })
                                 if (!values) {
                                     return;
                                 }

@@ -1,0 +1,11 @@
+import styled from "styled-components";
+
+export const HeaderWrapper = styled.h1`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: ${({ theme }) => theme.spacing * 4}px;
+  margin-bottom: ${({ theme }) => theme.spacing * 0.5}px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
+    font-size: ${({ theme }) => theme.spacing * 3}px;
+  }
+`;

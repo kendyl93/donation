@@ -1,12 +1,17 @@
 import styled from "styled-components"
+import { NAVBAR_HEIGHT } from "./components/Navbar/styles"
 
 export const LayoutWrapper = styled.div`
     background-color: #f2f2f2; /* Adjust this grey color to your preference */
-    min-height: 100vh;
+    height: 100vh;
+
+}
 `
 
 export const LayouContenttWrapper = styled.div`
+    height: 100%;
+    
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
-        padding: 20px;
+        height: calc(100% - ${NAVBAR_HEIGHT}px);
     }
 `
