@@ -12,8 +12,9 @@ const theme = {
         primary: "#423C66",
         secondary: "#595D7B",
         gray: {
-            dark: '#1E2A32',
-            primary: '#F4F8FA'
+            light: '#E9EEF2',
+            primary: '#F4F8FA',
+            dark: '#1E2A32'
         }
     },
     breakpoints: {

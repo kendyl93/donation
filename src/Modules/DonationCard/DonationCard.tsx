@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardContentWrapper, CardWrapper, CardInnerContentWrapper } from './styles';
+import { CardContentWrapper, CardWrapper, CardInnerContentWrapper, SummaryWrapper } from './styles';
 import { CardHeader } from './components/CardHeader';
 import { FormContent } from './components/FormContent';
 import { FormStateProvider } from './context/FormStateContext';
@@ -15,8 +15,10 @@ export const DonationCard: React.FC = () => {
                 <CardInnerContentWrapper>
                     <FormStateProvider>
                         <FormContent />
-                        <TotalAmount />
-                        <Summary />
+                        <SummaryWrapper>
+                            <TotalAmount />
+                            <Summary />
+                        </SummaryWrapper>
                         <Footer />
                     </FormStateProvider>
                 </CardInnerContentWrapper>

@@ -6,7 +6,6 @@ export const SummaryWrapper = styled.div`
   padding: ${({ theme }) => theme.spacing * 3}px ${({ theme }) => theme.spacing * 2}px;
   border-radius: ${({ theme }) => theme.spacing * 0.625}px;
   width: 100%;
-  margin-bottom: ${({ theme }) => theme.spacing * 4}px;
 `;
 
 export const SummaryTextWrapper = styled.p`
@@ -16,6 +15,6 @@ export const SummaryTextWrapper = styled.p`
 `;
 
 export const HighlightedTextWrapper = styled.span`
-font-family: ${({ theme }) => theme.font.family.inter};
+  font-family: ${({ theme }) => theme.font.family.inter};
   font-weight: 700;
 `;

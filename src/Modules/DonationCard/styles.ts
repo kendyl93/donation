@@ -29,4 +29,17 @@ export const CardInnerContentWrapper = styled.div`
   padding: ${({ theme }) => theme.spacing * 4}px ${({ theme }) => theme.spacing * 5}px;
 `;
 
+export const SummaryWrapper = styled.div`
+  border: solid 1px ${({ theme }) => theme.colors.gray.light};
+  border-radius: ${({ theme }) => theme.spacing * 0.5}px;
+  padding-top: ${({ theme }) => theme.spacing * 3}px;
+
+@media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
+    margin-bottom: ${({ theme }) => theme.spacing * 4}px;
+    border: none;
+  }
+`;
+
+
+
 
