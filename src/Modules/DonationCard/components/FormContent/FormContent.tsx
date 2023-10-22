@@ -75,7 +75,24 @@ export const FormContent = () => {
         console.log("Form values:", values);
     };
 
+    const onlyNumbers = (value: string) => {
+        // This will only return numbers, and will ignore any other character.
+        return value.replace(/[^\d]/g, '');
+    };
 
+
+    const preventNonNumericInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (!/[0-9]/.test(e.key) || (e.key === '0' && !e.currentTarget.value)) {
+            e.preventDefault();
+        }
+    };
+
+    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+        const pastedData = e.clipboardData.getData('text');
+        if (pastedData && (!/^\d+$/.test(pastedData) || /^0+/.test(pastedData))) {
+            e.preventDefault();
+        }
+    };
 
     return (
         <Form
@@ -101,6 +118,9 @@ export const FormContent = () => {
                                                 formatOnBlur
                                                 onFocus={(event: any) => onFocusAmount(event?.target?.value)}
                                                 placeholder="0.00"
+                                                onPaste={handlePaste}
+                                                onKeyPress={preventNonNumericInput}
+                                                parse={onlyNumbers}
                                             />
                                         </InputWrapper>
                                     )}

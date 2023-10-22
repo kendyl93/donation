@@ -9,8 +9,8 @@ export const DonationCard: React.FC = () => {
     return (
         <CardWrapper>
             <CardContentWrapper>
+                <CardHeader />
                 <FormStateProvider>
-                    <CardHeader />
                     <FormContent />
                     <TotalAmount />
                 </FormStateProvider>
