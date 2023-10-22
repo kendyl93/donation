@@ -19,7 +19,7 @@ const formatMoney = (value: any) => {
     if (!value) return value;
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'decimal',
-        minimumFractionDigits: 2
+        minimumFractionDigits: 0
     });
     return formatter.format(value);
 };

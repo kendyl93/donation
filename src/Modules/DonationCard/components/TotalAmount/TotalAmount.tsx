@@ -6,7 +6,7 @@ const formatMoney = (value: any) => {
     if (value === null || value === undefined) return value;
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
-        minimumFractionDigits: 2,
+        minimumFractionDigits: 0,
         currency: 'USD'
     });
     return formatter.format(value);
