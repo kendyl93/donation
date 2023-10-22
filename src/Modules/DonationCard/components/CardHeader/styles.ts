@@ -22,7 +22,6 @@ export const IconWrapper = styled.div`
 `;
 
 export const HeaderContentWrapper = styled.div`
-
     display: flex;
     flex-direction: column;
     text-align: center;

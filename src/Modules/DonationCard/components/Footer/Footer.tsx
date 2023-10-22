@@ -1,10 +1,14 @@
-import { CancelButtonWrapper, ContinueButtonWrapper, FooterWrapper } from "./styles";
+import { ButtonWrapper, CancelButtonWrapper, ContinueButtonWrapper, FooterWrapper } from "./styles";
 
 export const Footer: React.FC = () => {
     return (
         <FooterWrapper>
-            <CancelButtonWrapper>Cancel</CancelButtonWrapper>
-            <ContinueButtonWrapper>Continue</ContinueButtonWrapper>
+            <ButtonWrapper hideMobile>
+                <CancelButtonWrapper>Cancel</CancelButtonWrapper>
+            </ButtonWrapper>
+            <ButtonWrapper>
+                <ContinueButtonWrapper>Continue</ContinueButtonWrapper>
+            </ButtonWrapper>
         </FooterWrapper>
     );
 };
