@@ -20,6 +20,7 @@ export const CardContentWrapper = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
     height: auto;
+    width: 600px;
     min-width: auto;
   }
 `;

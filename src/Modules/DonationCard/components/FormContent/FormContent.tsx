@@ -4,6 +4,16 @@ import { useFormState } from '../../context/FormStateContext';
 import { monthNames } from '../../constants';
 import { currentMonthIndex, currentYear } from '../../utils';
 
+const calculateMonthsLeft = (monthIndex: number, year: number) => {
+    return (year - currentYear) * 12 + monthIndex - currentMonthIndex;
+};
+
+const isNumber = (value: any) => {
+    const strippedValue = String(value).replace(/,/g, '');
+    return !isNaN(Number(strippedValue)) && typeof Number(strippedValue) === 'number';
+}
+
+const MAX_VALUE = 1000000;
 
 const formatMoney = (value: any) => {
     if (!value) return value;
@@ -22,7 +32,7 @@ const unformatMoney = (form: any) => (formattedValue: string) => {
     }
 };
 
-const unformatMoney2 = (formattedValue: string, source?: string) => {
+const unformatMoney2 = (formattedValue: string) => {
 
     if (!formattedValue) return formattedValue;
     return parseFloat(formattedValue.toString().replace(/[^\d.-]/g, ''));
@@ -40,13 +50,6 @@ export const FormContent = () => {
         return value.replace(/[^\d]/g, '');
     };
 
-
-    const preventNonNumericInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (!/[0-9]/.test(e.key) || (e.key === '0' && !e.currentTarget.value)) {
-            e.preventDefault();
-        }
-    };
-
     const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
         const pastedData = e.clipboardData.getData('text');
         if (pastedData && (!/^\d+$/.test(pastedData) || /^0+/.test(pastedData))) {
@@ -54,11 +57,26 @@ export const FormContent = () => {
         }
     };
 
+    const validate = (values: any) => {
+        const errors = {
+            amount: ''
+        };
+
+        if (values.amount && parseFloat(values.amount) > MAX_VALUE) {
+            errors.amount = `Amount can't exceed ${MAX_VALUE}`;
+        }
+
+        return errors;
+    }
+
+
+
     return (
         <Form
+            validate={validate}
             onSubmit={onSubmit}
             initialValues={{ amount: null, monthIndex: currentMonthIndex + 1, year: currentYear }}
-            render={({ handleSubmit, form, values: { monthIndex, year } }: any) => {
+            render={({ handleSubmit, form, values: { amount, monthIndex, year } }: any) => {
                 const onFocusAmount = unformatMoney(form);
 
                 const handlePrevious = () => {
@@ -71,13 +89,32 @@ export const FormContent = () => {
                 };
 
                 const handleNext = () => {
+                    // Calculate the next month and year
+                    let nextMonthIndex, nextYear;
                     if (monthIndex === 11) {
-                        form.change('monthIndex', 0);
-                        form.change('year', year + 1);
+                        nextMonthIndex = 0;
+                        nextYear = year + 1;
                     } else {
-                        form.change('monthIndex', monthIndex + 1);
+                        nextMonthIndex = monthIndex + 1;
+                        nextYear = year;
                     }
+
+                    // Check if the totalAmount for next month exceeds MAX_VALUE
+                    const monthsLeftNext = calculateMonthsLeft(nextMonthIndex, nextYear);
+                    const totalAmountNext = Number(unformatMoney2(form.getFieldState('amount').value)) * monthsLeftNext;
+
+                    if (totalAmountNext > MAX_VALUE) {
+                        alert("Advancing to the next month would exceed the maximum amount.");
+                        return; // Prevent the advancement to the next month
+                    }
+
+                    // Continue to advance to the next month
+                    form.change('monthIndex', nextMonthIndex);
+                    form.change('year', nextYear);
                 };
+
+
+
 
                 const isCurrentMonthAndYear = monthIndex === currentMonthIndex + 1 && year === currentYear;
                 return (
@@ -86,23 +123,32 @@ export const FormContent = () => {
                             <FieldWrapper>
                                 <LabelWrapper>I can donate</LabelWrapper>
                                 <Field name="amount">
-                                    {({ input }: any) => (
-                                        <InputWrapper>
-                                            <CurrencySign>$</CurrencySign>
-                                            <Field
-                                                name="amount"
-                                                component="input"
-                                                type="text"
-                                                format={formatMoney}
-                                                formatOnBlur
-                                                onFocus={(event: any) => onFocusAmount(event?.target?.value)}
-                                                placeholder="0.00"
-                                                onPaste={handlePaste}
-                                                onKeyPress={preventNonNumericInput}
-                                                parse={onlyNumbers}
-                                            />
-                                        </InputWrapper>
-                                    )}
+                                    {() => {
+                                        const preventNonNumericInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+                                            if ((isNumber(amount) && amount?.length > 6) || !/[0-9]/.test(e.key) || (e.key === '0' && !e.currentTarget.value)) {
+                                                console.log({ amount })
+                                                e.preventDefault();
+                                            }
+                                        };
+
+                                        return (
+                                            <InputWrapper>
+                                                <CurrencySign>$</CurrencySign>
+                                                <Field
+                                                    name="amount"
+                                                    component="input"
+                                                    type="text"
+                                                    format={formatMoney}
+                                                    formatOnBlur
+                                                    onFocus={(event: any) => onFocusAmount(event?.target?.value)}
+                                                    placeholder="0.00"
+                                                    onPaste={handlePaste}
+                                                    onKeyPress={preventNonNumericInput}
+                                                    parse={onlyNumbers}
+                                                />
+                                            </InputWrapper>
+                                        )
+                                    }}
                                 </Field>
                             </FieldWrapper>
                             <FieldWrapper>

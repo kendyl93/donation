@@ -5,13 +5,14 @@ export const TotalAmountWrapper = styled.div`
   justify-content: space-between;
   padding: 0 ${({ theme }) => theme.spacing * 2}px;
   gap: ${({ theme }) => theme.spacing}px;
+  margin-bottom: ${({ theme }) => theme.spacing * 3}px;
   align-items: center;
 `;
 
 export const LabelWrapper = styled.div`
   font-family: ${({ theme }) => theme.font.family.workSans};
   font-size: ${({ theme }) => theme.font.baseSize * 2.5}px;
-  color: ${({ theme }) => theme.colors.gray.superDark};
+  color: ${({ theme }) => theme.colors.gray.dark};
   font-weight: 500;
 `;
 

@@ -12,7 +12,7 @@ const theme = {
         primary: "#423C66",
         secondary: "#595D7B",
         gray: {
-            superDark: '#1E2A32',
+            dark: '#1E2A32',
             primary: '#F4F8FA'
         }
     },
