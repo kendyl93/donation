@@ -6,5 +6,7 @@ export const LayoutWrapper = styled.div`
 `
 
 export const LayouContenttWrapper = styled.div`
-    padding: 20px;
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
+        padding: 20px;
+    }
 `

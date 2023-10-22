@@ -1,7 +1,9 @@
 import { Form, Field, FormSpy } from 'react-final-form';
-import { ButtonWrapper, FieldWrapper, FormWrapper, InputWrapper, LabelWrapper, MonthDisplayWrapper, SelectorContentWrapper, SelectorWrapper, YearDisplayWrapper, CurrencySign } from './styles';
+import { ArrowButtonWrapper, FieldWrapper, FormWrapper, InputWrapper, LabelWrapper, MonthDisplayWrapper, SelectorWrapper, CurrencySign, MonthYearDisplayWrapper, MonthWrapper, YearWrapper } from './styles';
 import { useFormState } from '../../context/FormStateContext';
 import { useEffect, useState } from 'react';
+import { monthNames } from '../../constants';
+import { currentMonthIndex, currentYear } from '../../utils';
 
 
 const formatMoney = (value: any) => {
@@ -29,47 +31,17 @@ const unformatMoney2 = (formattedValue: string, source?: string) => {
 };
 
 export const FormContent = () => {
-    const [monthAndYear, setMonthAndYear] = useState(new Date());
-    const [previousButtonDisabled, setPreviousButtonDisabled] = useState(true);
     const { setFormState } = useFormState();
+    // const [previousButtonDisabled, setPreviousButtonDisabled] = useState(true);
 
-    const months = [
-        "January", "February", "March", "April", "May", "June", "July",
-        "August", "September", "October", "November", "December"
-    ];
+    // useEffect(() => {
+    //     if (monthAndYear.getMonth() === currentMonth && monthAndYear.getFullYear() === currentYear) {
+    //         setPreviousButtonDisabled(true)
+    //     }
+    // }, [monthAndYear])
 
-    useEffect(() => {
-        if (monthAndYear.getMonth() === currentMonth && monthAndYear.getFullYear() === currentYear) {
-            setPreviousButtonDisabled(true)
-        }
-    }, [monthAndYear])
 
-    const currentMonth = new Date().getMonth();
-    const currentYear = new Date().getFullYear();
 
-    const onNextClick = () => {
-        if (previousButtonDisabled) {
-            setPreviousButtonDisabled(false)
-        }
-
-        if (monthAndYear.getMonth() === 11) {
-            setMonthAndYear(new Date(monthAndYear.getFullYear() + 1, 0));
-        } else {
-            setMonthAndYear(new Date(monthAndYear.getFullYear(), monthAndYear.getMonth() + 1));
-        }
-    };
-
-    const onPreviousClick = () => {
-        if (monthAndYear.getMonth() === currentMonth && monthAndYear.getFullYear() === currentYear) {
-            return; // Do not go to the previous month
-        }
-
-        if (monthAndYear.getMonth() === 0) {
-            setMonthAndYear(new Date(monthAndYear.getFullYear() - 1, 11));
-        } else {
-            setMonthAndYear(new Date(monthAndYear.getFullYear(), monthAndYear.getMonth() - 1));
-        }
-    };
 
     const onSubmit = (values: any) => {
         console.log("Form values:", values);
@@ -97,10 +69,33 @@ export const FormContent = () => {
     return (
         <Form
             onSubmit={onSubmit}
-            initialValues={{ amount: null, month: 'August 2023' }}
-            render={({ handleSubmit, form }: any) => {
+            initialValues={{ amount: null, monthIndex: new Date().getMonth(), year: new Date().getFullYear() }}
+            render={({ handleSubmit, form, values: { monthIndex, year } }: any) => {
                 const onFocusAmount = unformatMoney(form);
 
+                const handlePrevious = () => {
+                    if (monthIndex === currentMonthIndex && currentYear && year) {
+                        return;
+                    }
+
+                    if (monthIndex === 0) {
+                        form.change('monthIndex', 11);
+                        form.change('year', year - 1);
+                    } else {
+                        form.change('monthIndex', monthIndex - 1);
+                    }
+                };
+
+                const handleNext = () => {
+                    if (monthIndex === 11) {
+                        form.change('monthIndex', 0);
+                        form.change('year', year + 1);
+                    } else {
+                        form.change('monthIndex', monthIndex + 1);
+                    }
+                };
+
+                const isCurrentMonthAndYear = monthIndex === currentMonthIndex && year === currentYear;
                 return (
                     <form onSubmit={handleSubmit}>
                         <FormWrapper>
@@ -129,26 +124,33 @@ export const FormContent = () => {
                             <FieldWrapper>
                                 <LabelWrapper>Every month until</LabelWrapper>
                                 <SelectorWrapper>
-                                    <ButtonWrapper onClick={onPreviousClick} disabled={previousButtonDisabled}>{'<'}</ButtonWrapper>
-                                    <SelectorContentWrapper>
-                                        <MonthDisplayWrapper>{months[monthAndYear.getMonth()]}</MonthDisplayWrapper>
-                                        <YearDisplayWrapper>{monthAndYear.getFullYear()}</YearDisplayWrapper>
-                                    </SelectorContentWrapper>
-                                    <ButtonWrapper onClick={onNextClick}>{'>'}</ButtonWrapper>
+                                    <ArrowButtonWrapper title={isCurrentMonthAndYear ? 'Cannot set past date' : 'Previous month'} disabled={isCurrentMonthAndYear} onClick={handlePrevious}>&lt;</ArrowButtonWrapper>
+                                    <MonthYearDisplayWrapper>
+                                        <MonthWrapper>
+                                            {monthNames[monthIndex]}
+                                        </MonthWrapper>
+                                        <YearWrapper>
+                                            {year}
+                                        </YearWrapper>
+                                        <Field name="monthIndex" component="input" type="hidden" />
+                                        <Field name="year" component="input" type="hidden" />
+                                    </MonthYearDisplayWrapper>
+                                    <ArrowButtonWrapper title="Next month" onClick={handleNext}>&gt;</ArrowButtonWrapper>
                                 </SelectorWrapper>
                             </FieldWrapper>
                         </FormWrapper>
                         <FormSpy
                             subscription={{ values: true }}
                             onChange={({ values }) => {
-
+                                console.log({ subsc: values })
                                 if (!values) {
                                     return;
                                 }
+
                                 const unformatted = unformatMoney2(values.amount)
-                                console.log({ unformatted })
+
                                 setFormState({ ...values, amount: unformatted });
-                                debugger;
+
                                 return values;  // This line is just to satisfy the expected return type
                             }}
                         />

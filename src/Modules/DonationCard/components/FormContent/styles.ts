@@ -2,9 +2,14 @@ import styled from 'styled-components';
 
 export const FormWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 15px 0;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
+    flex-direction: row;
+  }
 `;
 
 export const FieldWrapper = styled.div`
@@ -50,7 +55,7 @@ export const YearDisplayWrapper = styled(MonthDisplayWrapper)`  // Inherits styl
   font-size: 0.9em;  // Slightly smaller text for year
 `;
 
-export const ButtonWrapper = styled.button`
+export const ArrowButtonWrapper = styled.button`
     background-color: transparent;  // Transparent background
     border: none;
     width: 40px;  // Fixed width for buttons
@@ -76,3 +81,21 @@ export const CurrencySign = styled.span`
   padding: 0 10px;  // Add some padding for spacing
   font-size: 1em;
 `;
+
+export const MonthYearDisplayWrapper = styled.div`
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MonthWrapper = styled.div`
+  font-size: 24px;
+`;
+
+export const YearWrapper = styled.div`
+  font-size: 12px;
+`;
+

@@ -9,8 +9,18 @@ export const CardWrapper = styled.div`
 `;
 
 export const CardContentWrapper = styled.div`
-  min-width: 400px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  // Optional shadow effect
-  background-color: #fff;
-  border-radius: ${({ theme }) => theme.border.radius};
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+min-width: 100%;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  // Optional shadow effect
+background-color: #fff;
+border-radius: ${({ theme }) => theme.border.radius};
+height: inherit;
+
+@media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
+  height: auto;
+    max-width: 400px;
+    min-width: auto;
+  },
 `;
