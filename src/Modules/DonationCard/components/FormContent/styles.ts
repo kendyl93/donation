@@ -17,7 +17,7 @@ export const LabelWrapper = styled.label`
   margin-right: 15px;
 `;
 
-export const InputWrapper = styled.input`
+export const InputValueWrapper = styled.input`
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -26,11 +26,11 @@ export const InputWrapper = styled.input`
 `;
 
 export const SelectorWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  border: 2px solid #007BFF;  // Blue border
-  border-radius: 16px;  // Rounded edges
-  overflow: hidden;  // To make sure child elements don't overflow
+    display: flex;
+    align-items: center;
+    border: 2px solid #E0E0E0;  // Light gray border
+    border-radius: 20px;  // More rounded edges
+    overflow: hidden;  // To ensure child elements don't overflow
 `;
 
 export const SelectorContentWrapper = styled.div`
@@ -40,26 +40,39 @@ export const SelectorContentWrapper = styled.div`
 `;
 
 export const MonthDisplayWrapper = styled.div`
-  flex: 1;  // Take maximum available space
-  background-color: #F8F9FA;  // Light gray background
-  text-align: center;
-  padding: 10px;
+    flex: 1;  // Take maximum available space
+    text-align: center;
+    padding: 10px 0;  // Top and bottom padding
+    font-size: 1.2em;  // Slightly larger text for month
 `;
 
 export const YearDisplayWrapper = styled(MonthDisplayWrapper)`  // Inherits styles from MonthDisplay
-  font-size: 0.8em;  // Slightly smaller text for year
+  font-size: 0.9em;  // Slightly smaller text for year
 `;
 
 export const ButtonWrapper = styled.button`
-  background-color: #007BFF;  // Blue background
-  color: white;  // White text
-  border: none;
-  width: 40px;  // Fixed width for buttons
-  height: 100%;  // Full height of parent
-  cursor: pointer;
-  font-size: 1.2em;  // Increase arrow size
+    background-color: transparent;  // Transparent background
+    border: none;
+    width: 40px;  // Fixed width for buttons
+    height: 100%;  // Full height of parent
+    cursor: pointer;
+    font-size: 1.2em;  // Size of arrow
+    color: #B0B0B0;  // Light gray arrow
 
-  &:disabled {
-    background-color: #ADC6E0;  // Lighter blue for disabled state
-  }
+    &:disabled {
+    color: #E0E0E0;  // Even lighter gray for disabled state
+    }
+`;
+
+export const InputWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    border: 2px solid #E0E0E0;
+    border-radius: 10px;
+    overflow: hidden;
+`;
+
+export const CurrencySign = styled.span`
+  padding: 0 10px;  // Add some padding for spacing
+  font-size: 1em;
 `;

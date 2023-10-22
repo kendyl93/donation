@@ -1,0 +1,1 @@
+declare module "react-number-format"; // Added because of https://github.com/s-yadav/react-number-format/issues/630#issuecomment-1231715573

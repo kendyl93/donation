@@ -1,7 +1,25 @@
 import { Form, Field } from 'react-final-form';
-import { ButtonWrapper, FieldWrapper, FormWrapper, InputWrapper, LabelWrapper, MonthDisplayWrapper, SelectorContentWrapper, SelectorWrapper, YearDisplayWrapper } from './styles';
+import { ButtonWrapper, FieldWrapper, FormWrapper, InputWrapper, LabelWrapper, MonthDisplayWrapper, SelectorContentWrapper, SelectorWrapper, YearDisplayWrapper, CurrencySign, InputValueWrapper } from './styles';
 import { useEffect, useState } from 'react';
 
+
+const formatMoney = (value: any) => {
+    if (!value) return value;
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'decimal',
+        minimumFractionDigits: 2
+    });
+    return formatter.format(value);
+};
+
+const unformatMoney = (form: any) => (formattedValue: any) => {
+    if (!formattedValue?.target?.value) return formattedValue;
+    // Removing any non-digit characters and parse it to a float
+    console.log({ DUPA: parseFloat(formattedValue?.target.value?.replace(/[^\d.-]/g, '')) })
+    if (parseFloat(formattedValue?.target.value?.replace(/[^\d.-]/g, ''))) {
+        form.change('amount', parseFloat(formattedValue?.target.value?.replace(/[^\d.-]/g, '')));
+    }
+};
 
 export const FormContent = () => {
     const [monthAndYear, setMonthAndYear] = useState(new Date());
@@ -49,35 +67,52 @@ export const FormContent = () => {
         console.log("Form values:", values);
     };
 
+
+
     return (
         <Form
             onSubmit={onSubmit}
-            initialValues={{ amount: '$25,000', month: 'August 2023' }}
-            render={({ handleSubmit }: any) => (
-                <form onSubmit={handleSubmit}>
-                    <FormWrapper>
-                        <FieldWrapper>
-                            <LabelWrapper>I can donate</LabelWrapper>
-                            <Field name="amount">
-                                {({ input }: any) => (
-                                    <InputWrapper {...input} />
-                                )}
-                            </Field>
-                        </FieldWrapper>
-                        <FieldWrapper>
-                            <LabelWrapper>Every month until</LabelWrapper>
-                            <SelectorWrapper>
-                                <ButtonWrapper onClick={onPreviousClick} disabled={previousButtonDisabled}>{'<'}</ButtonWrapper>
-                                <SelectorContentWrapper>
-                                    <MonthDisplayWrapper>{months[monthAndYear.getMonth()]}</MonthDisplayWrapper>
-                                    <YearDisplayWrapper>{monthAndYear.getFullYear()}</YearDisplayWrapper>
-                                </SelectorContentWrapper>
-                                <ButtonWrapper onClick={onNextClick}>{'>'}</ButtonWrapper>
-                            </SelectorWrapper>
-                        </FieldWrapper>
-                    </FormWrapper>
-                </form >
-            )}
+            initialValues={{ amount: null, month: 'August 2023' }}
+            render={({ handleSubmit, form }: any) => {
+                const onFocusAmount = unformatMoney(form);
+
+                return (
+                    <form onSubmit={handleSubmit}>
+                        <FormWrapper>
+                            <FieldWrapper>
+                                <LabelWrapper>I can donate</LabelWrapper>
+                                <Field name="amount">
+                                    {({ input }: any) => (
+                                        <InputWrapper>
+                                            <CurrencySign>$</CurrencySign>
+                                            <Field
+                                                name="amount"
+                                                component="input"
+                                                type="text"
+                                                format={formatMoney}
+                                                formatOnBlur
+                                                onFocus={onFocusAmount}
+                                                placeholder="0.00"
+                                            />
+                                        </InputWrapper>
+                                    )}
+                                </Field>
+                            </FieldWrapper>
+                            <FieldWrapper>
+                                <LabelWrapper>Every month until</LabelWrapper>
+                                <SelectorWrapper>
+                                    <ButtonWrapper onClick={onPreviousClick} disabled={previousButtonDisabled}>{'<'}</ButtonWrapper>
+                                    <SelectorContentWrapper>
+                                        <MonthDisplayWrapper>{months[monthAndYear.getMonth()]}</MonthDisplayWrapper>
+                                        <YearDisplayWrapper>{monthAndYear.getFullYear()}</YearDisplayWrapper>
+                                    </SelectorContentWrapper>
+                                    <ButtonWrapper onClick={onNextClick}>{'>'}</ButtonWrapper>
+                                </SelectorWrapper>
+                            </FieldWrapper>
+                        </FormWrapper>
+                    </form >
+                )
+            }}
         />
     );
 }
