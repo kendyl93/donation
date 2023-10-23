@@ -39,6 +39,33 @@ const unformatMoney2 = (formattedValue: string) => {
 
 };
 
+const formatMoneyCurrency = (value: any) => {
+    if (value === null || value === undefined) return value;
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        minimumFractionDigits: 0,
+        currency: 'USD'
+    });
+    return formatter.format(value);
+};
+
+const calculateAccumulatedAmount = (values: any) => {
+    // Calculate the difference in months
+    const monthsDifference =
+        (values.year - currentYear) * 12 + values.monthIndex - currentMonthIndex;
+
+    // If the difference is negative or zero, that means the specified month and year are in the past or current month
+    if (monthsDifference <= 0) {
+        console.warn("Specified month and year are in the past or current month. Returning 0.");
+        return 0;
+    }
+
+    // Calculate the accumulated amount
+    const accumulatedAmount = values.amount * monthsDifference;
+
+    return accumulatedAmount;
+}
+
 export const FormContent = () => {
     const { setFormState } = useFormState();
 
@@ -176,9 +203,10 @@ export const FormContent = () => {
                                     return;
                                 }
 
-                                const unformatted = unformatMoney2(values.amount)
+                                const unformattedMoney = unformatMoney2(values.amount)
+                                const calaculatedWithMonths = calculateAccumulatedAmount({ ...values, amount: unformattedMoney })
 
-                                setFormState({ ...values, amount: unformatted });
+                                setFormState({ deadline: `${monthNames[values.monthIndex]} ${values.year}`, amount: formatMoneyCurrency(calaculatedWithMonths) });
 
                                 return values;  // This line is just to satisfy the expected return type
                             }}
