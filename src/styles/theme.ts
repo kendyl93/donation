@@ -5,6 +5,7 @@ const theme = {
         family: {
             inter: "'Inter', sans-serif",
             workSans: "Work Sans",
+            rubik: "'Rubik', sans-serif"
         },
         baseSize: 8
     },
@@ -12,13 +13,15 @@ const theme = {
         primary: "#423C66",
         secondary: "#595D7B",
         gray: {
+            superLight: '#E0E0E0',
             light: '#E9EEF2',
             primary: '#F4F8FA',
-            dark: '#1E2A32'
+            dark: '#1E2A32',
+            superDark: '#4D6475'
         }
     },
     breakpoints: {
-        mobile: '425px',
+        mobile: '525px',
     }
 };
 

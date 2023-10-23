@@ -7,8 +7,8 @@ export const HeaderContainerWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: ${({ theme }) => theme.spacing * 2}px ${({ theme }) => theme.spacing * 3}px ${({ theme }) => theme.spacing * 3.5}px;
-  background-color: #FCD5CE;  // Peach color based on the image. Adjust as needed.
-  border-radius: 8px 8px 0 0; // Assuming you want to keep the top corners rounded and bottom corners straight.
+  background-color: #FCD5CE; 
+  border-radius: 8px 8px 0 0; 
   
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
       flex-direction: row;

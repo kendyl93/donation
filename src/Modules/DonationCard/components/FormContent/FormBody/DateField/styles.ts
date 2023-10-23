@@ -1,38 +1,16 @@
 import styled from 'styled-components';
 
-export const FieldWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const LabelWrapper = styled.label`
-  font-size: 16px;
-  margin-right: 15px;
-`;
-
-export const InputValueWrapper = styled.input`
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
-  width: 120px; // Adjust as needed
-`;
-
 export const SelectorWrapper = styled.div`
     display: flex;
     align-items: center;
-    border: 2px solid #E0E0E0;  // Light gray border
-    border-radius: 20px;  // More rounded edges
-    overflow: hidden;  // To ensure child elements don't overflow
+    border: 2px solid ${({ theme }) => theme.colors.gray.superLight};
+    border-radius: ${({ theme }) => theme.spacing * 1.25}px;
+    overflow: hidden; 
+    justify-content: space-between;
+    padding: ${({ theme }) => theme.spacing * 1.5}px;
 `;
 
-export const SelectorContentWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-`;
-
-export const MonthDisplayWrapper = styled.div`
+const MonthDisplayWrapper = styled.div`
     flex: 1;  // Take maximum available space
     text-align: center;
     padding: 10px 0;  // Top and bottom padding
@@ -46,31 +24,29 @@ export const YearDisplayWrapper = styled(MonthDisplayWrapper)`  // Inherits styl
 export const ArrowButtonWrapper = styled.button`
     background-color: transparent;  // Transparent background
     border: none;
-    width: 40px;  // Fixed width for buttons
-    height: 100%;  // Full height of parent
-    cursor: pointer;
-    font-size: 1.2em;  // Size of arrow
-    color: #B0B0B0;  // Light gray arrow
-
-    &:disabled {
-    color: #E0E0E0;  // Even lighter gray for disabled state
-    }
 `;
 
 export const MonthYearDisplayWrapper = styled.div`
-  padding: 10px 20px;
-  background-color: #f4f4f4;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 `;
 
 export const MonthWrapper = styled.div`
-  font-size: 24px;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-family:  ${({ theme }) => theme.font.family.rubik};
+  font-size: ${({ theme }) => theme.font.baseSize * 2}px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25;
 `;
 
 export const YearWrapper = styled.div`
-  font-size: 12px;
+color: ${({ theme }) => theme.colors.secondary};
+font-family:  ${({ theme }) => theme.font.family.workSans};
+font-size: ${({ theme }) => theme.font.baseSize * 1.5}px;
+font-style: normal;
+font-weight: 500;
+line-height: ${({ theme }) => theme.font.baseSize * 2}px;
 `;
 

@@ -11,7 +11,7 @@ export const CardWrapper = styled.div`
 export const CardContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   min-width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  // Optional shadow effect
   background-color: #fff;
@@ -27,6 +27,10 @@ export const CardContentWrapper = styled.div`
 
 export const CardInnerContentWrapper = styled.div`
   padding: ${({ theme }) => theme.spacing * 4}px ${({ theme }) => theme.spacing * 5}px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 `;
 
 export const SummaryWrapper = styled.div`

@@ -1,9 +1,9 @@
-import { Field as ReactFinalFormField } from "react-final-form"
-import { CurrencySign, InputWrapper } from "./styles"
+import { InputWrapper, StyledField } from "./styles"
 import { Field } from "../../../../../../shared/Form/Field"
 import { useCurrencyField } from "./hooks"
-import { locale } from "../../../../constants"
 import { formatDecimal } from "../../../../../../utils"
+import { DollarSign } from "../../../../../../shared/DollarSign"
+
 
 export const CurrencyField = () => {
     const {
@@ -14,11 +14,11 @@ export const CurrencyField = () => {
         placeholder
     } = useCurrencyField()
 
-    return (
+    return (<>
         <Field label="I can donate">
             <InputWrapper>
-                <CurrencySign>{locale.US.currencySign}</CurrencySign>
-                <ReactFinalFormField
+                <DollarSign />
+                <StyledField
                     name="amount"
                     component="input"
                     type="text"
@@ -32,5 +32,6 @@ export const CurrencyField = () => {
                 />
             </InputWrapper>
         </Field >
+    </>
     )
 }

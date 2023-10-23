@@ -4,7 +4,7 @@ import { HighlightedTextWrapper, SummaryTextWrapper, SummaryWrapper } from "./st
 
 export const Summary: React.FC = () => {
     const { formState } = useFormState();
-    debugger;
+
     if (!formState?.amount || !formState?.deadline) {
         return <></>
     }

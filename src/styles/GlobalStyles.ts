@@ -26,6 +26,10 @@ const GlobalStyles = createGlobalStyle`
     align-self: stretch;
     line-height: 1.25
   }
+
+  input {
+    all: unset;
+  }
 `;
 
 export default GlobalStyles;

@@ -1,5 +1,4 @@
 import givingBlockSrc from '../../../../assets/giving-block.svg';
-
 import { Header } from '../../../../shared/Header';
 import { Subheader } from '../../../../shared/Subheader';
 import { HeaderContainerWrapper, HeaderContentWrapper, IconWrapper, CloseButtonWrapper } from './styles';
