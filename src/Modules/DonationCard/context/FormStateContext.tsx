@@ -1,18 +1,19 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
+import { FormState, FormStateContextProps } from './types';
 
-type FormStateContextProps = {
-    formState: Record<string, any>;
-    setFormState: React.Dispatch<React.SetStateAction<Record<string, any>>>;
-}
+
 
 const FormStateContext = createContext<FormStateContextProps | undefined>(undefined);
+
+const initialFormState: FormState = { amount: '', deadline: '' };
 
 type FormStateProviderProps = {
     children: ReactNode;
 }
 
 export const FormStateProvider: React.FC<FormStateProviderProps> = ({ children }) => {
-    const [formState, setFormState] = useState<Record<string, any>>({});
+    const [formState, setFormState] = useState<FormState>(initialFormState);
+
     return (
         <FormStateContext.Provider value={{ formState, setFormState }}>
             {children}

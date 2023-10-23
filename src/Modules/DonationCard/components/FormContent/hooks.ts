@@ -2,45 +2,37 @@ import { MAX_VALUE, monthNames } from "../../constants";
 import { currentMonthIndex, currentYear } from '../../utils';
 import { formatCurrency, onlyDigits } from '../../../../utils';
 import { useFormState } from "../../context/FormStateContext";
-import { calculateAccumulatedAmount } from "./utils";
+import { calculateAccumulatedAmount, formatAmount, formatDeadline } from "./utils";
+import { FormValues, FormValuesChangeArgs } from "./types";
 
 export const useFormContent = () => {
     const { setFormState } = useFormState();
-    const initialValues = { amount: null, monthIndex: currentMonthIndex + 1, year: currentYear };
+    const nextMonth = currentMonthIndex + 1;
+    const initialValues = { amount: null, monthIndex: nextMonth, year: currentYear };
 
-    const validate = (values: any) => { //TODO: not sure - to remove probably
-        const errors = {
-            amount: ''
-        };
-
-        if (values.amount && parseFloat(values.amount) > MAX_VALUE) {
-            errors.amount = `Amount can't exceed ${MAX_VALUE}`;
-        }
-
-        return errors;
-    }
-
-    const onSubmit = (values: any) => {
+    const onSubmit = (values: FormValues) => {
         console.log("Form values:", values);
     };
 
-    const handleFormValuesChange = ({ values }: any) => {
+    const handleFormValuesChange = ({ values }: FormValuesChangeArgs) => {
         if (!values) {
             return;
         }
 
-        const unformattedMoney = onlyDigits(values.amount)
-        const calaculatedWithMonths = calculateAccumulatedAmount({ ...values, amount: unformattedMoney })
+        const formattedAmount = formatAmount(values.amount ?? 0);
+        const accumulatedAmount = calculateAccumulatedAmount({ ...values, amount: formattedAmount });
 
-        setFormState({ deadline: `${monthNames[values.monthIndex]} ${values.year}`, amount: formatCurrency(calaculatedWithMonths) });
+        setFormState({
+            deadline: formatDeadline(values.monthIndex, values.year),
+            amount: formatCurrency(accumulatedAmount)
+        });
 
-        return values;  // This line is just to satisfy the expected return type
+        return values;
     }
 
     return {
         initialValues,
         handleFormValuesChange,
-        validate,
         onSubmit
     };
 }

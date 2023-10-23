@@ -1,21 +1,16 @@
 import { Form, FormSpy } from 'react-final-form';
-import { monthNames } from '../../constants';
-import { currentMonthIndex, currentYear } from '../../utils';
-import { regex } from '../../../../utils';
 import { useFormContent } from './hooks';
 import { FormBody } from './FormBody';
-
-
+import { FormValues } from './types';
 
 export const FormContent = () => {
-    const { initialValues, handleFormValuesChange, validate, onSubmit } = useFormContent();
+    const { initialValues, handleFormValuesChange, onSubmit } = useFormContent();
 
     return (
-        <Form
-            validate={validate}
+        <Form<FormValues>
             onSubmit={onSubmit}
             initialValues={initialValues}
-            render={({ handleSubmit }: any) => <form onSubmit={handleSubmit}>
+            render={({ handleSubmit }) => <form onSubmit={handleSubmit}>
                 <>
                     <FormBody />
                     <FormSpy
