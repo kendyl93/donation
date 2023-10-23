@@ -1,29 +1,21 @@
-import { onlyDigits } from "../../../../utils";
+import { locale } from "../../constants";
+import { currentMonthIndex, currentYear } from "../../utils";
 
-export const getNextMonthAndYear = (monthIndex: number, year: number): number[] => {
-    let nextMonthIndex: number = monthIndex + 1;
-    let nextYear: number = year;
-    const isDecember = monthIndex === 11;
 
-    if (isDecember) {
-        nextMonthIndex = 0;
-        nextYear = year + 1;
+
+export const calculateAccumulatedAmount = (values: any) => {
+    // Calculate the difference in months
+    const monthsDifference =
+        (values.year - currentYear) * 12 + values.monthIndex - currentMonthIndex;
+
+    // If the difference is negative or zero, that means the specified month and year are in the past or current month
+    if (monthsDifference <= 0) {
+        console.warn("Specified month and year are in the past or current month. Returning 0.");
+        return 0;
     }
 
-    return [nextMonthIndex, nextYear]
+    // Calculate the accumulated amount
+    const accumulatedAmount = values.amount * monthsDifference;
+
+    return accumulatedAmount;
 }
-
-export const setDecemberAndDeductYear = (form: any, selectedYear: number) => {
-    const decemberIndex = 11;
-
-    form.change('monthIndex', decemberIndex);
-    form.change('year', selectedYear - 1);
-}
-
-export const withoutFormatting = (form: any) => (formattedValue: string) => {
-    const withoutFormatting = onlyDigits(formattedValue);
-
-    if (withoutFormatting) {
-        form.change('amount', withoutFormatting);
-    }
-};

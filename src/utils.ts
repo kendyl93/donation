@@ -18,14 +18,31 @@ export const calculateMonthsDiff = (monthIndex: number, year: number): number =>
     return (year - currentYear) * 12 + monthIndex - currentMonthIndex;
 };
 
-export const onlyDigits = (value: number | string): number => parseFloat(value.toString().replace(regex.digitsOnly, ''))
+export const onlyDigits = (value: number | string): number => {
+    if (!value) {
+        return 0;
+    }
+
+    return parseFloat(value.toString().replace(regex.digitsOnly, ''))
+}
 
 export const formatDecimal = (value: number): string => {
-    if (!value) return value.toString();
+    if (!value) return '';
     const formatter = new Intl.NumberFormat(locale.US.code, {
         style: 'decimal',
         minimumFractionDigits: 0
     });
 
+    return formatter.format(value);
+};
+
+export const formatCurrency = (value: number): string => {
+    if (value === null || value === undefined) return value;
+
+    const formatter = new Intl.NumberFormat(locale.US.code, {
+        style: 'currency',
+        minimumFractionDigits: 0,
+        currency: locale.US.currency
+    });
     return formatter.format(value);
 };
