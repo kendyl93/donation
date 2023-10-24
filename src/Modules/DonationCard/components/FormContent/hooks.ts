@@ -1,13 +1,13 @@
-import { currentMonthIndex, currentYear } from '../../utils';
 import { formatCurrency } from '../../../../utils';
 import { useFormState } from "../../context/FormStateContext";
 import { calculateAccumulatedAmount, formatAmount, formatDeadline } from "./utils";
 import { FormValues, FormValuesChangeArgs } from "./types";
+import { getNextMonthIndexAndYear } from '../../utils';
 
 export const useFormContent = () => {
     const { setFormState } = useFormState();
-    const nextMonth = currentMonthIndex + 1;
-    const initialValues = { amount: null, monthIndex: nextMonth, year: currentYear };
+    const { nextMonthIndex, year } = getNextMonthIndexAndYear();
+    const initialValues = { amount: null, monthIndex: nextMonthIndex, year };
 
     const onSubmit = (values: FormValues) => {
         console.log("Form values:", values);
