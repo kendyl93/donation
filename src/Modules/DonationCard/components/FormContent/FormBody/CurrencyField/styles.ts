@@ -11,6 +11,7 @@ export const StyledField = styled(Field)`
   padding: ${({ theme }) => theme.spacing * 2}px;
   padding-left: 0;
   width: 100%;
+
 `;
 
 
@@ -21,8 +22,13 @@ export const InputWrapper = styled.div`
     border-radius: ${({ theme }) => theme.spacing * 1.25}px;
     overflow: hidden;
     margin-bottom: ${({ theme }) => theme.spacing * 2}px;
+    transition: border-color .1s ease-in;
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
       margin-bottom: 0;
+    }
+
+    &:focus-within {
+      border-color: ${({ theme }) => theme.colors.primary.default};
     }
 `;

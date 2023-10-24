@@ -7,8 +7,12 @@ export const CloseButtonWrapper = styled.div`
     align-items: center;
     justify-content: center;
     width: 40px;
-    height: 40px;
+    height: 40px;,
+    transition: background-color .15s ease-in-out;
+
+    &:hover,
     &:active {
-      background-color: ${({ theme }) => rgba(theme.colors.primary, 0.2)};
+      cursor: pointer;
+      background-color: ${({ theme }) => rgba(theme.colors.primary.default, 0.2)};
     }
 `;

@@ -10,7 +10,11 @@ const theme = {
         baseSize: 8
     },
     colors: {
-        primary: "#423C66",
+        primary: {
+            light: '#645D93',
+            default: "#423C66",
+            dark: '#241E47'
+        },
         secondary: "#595D7B",
         gray: {
             superLight: '#E0E0E0',
@@ -18,7 +22,10 @@ const theme = {
             primary: '#F4F8FA',
             dark: '#1E2A32',
             superDark: '#4D6475'
-        }
+        },
+        background: '#f0f0f0',
+        hover: '#F3F5FE',
+        active: '#E8EAF2'
     },
     breakpoints: {
         mobile: '525px',

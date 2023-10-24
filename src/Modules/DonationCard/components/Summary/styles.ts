@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 // Styled components for the summary
 export const SummaryWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.gray.primary};
+  background-color: ${({ theme }) => theme.colors.gray.primary.default};
   padding: ${({ theme }) => theme.spacing * 3}px ${({ theme }) => theme.spacing * 2}px;
   border-radius: ${({ theme }) => theme.spacing * 0.625}px;
   width: 100%;

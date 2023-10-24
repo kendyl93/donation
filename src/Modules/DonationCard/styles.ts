@@ -4,8 +4,11 @@ export const CardWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  background-color: #f0f0f0; // This is a placeholder grey. Adjust to match your theme.
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
+    height: 100%;
+    background-color: ${({ theme }) => theme.colors.background};
+  }
 `;
 
 export const CardContentWrapper = styled.div`
@@ -13,15 +16,16 @@ export const CardContentWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   min-width: 100%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  // Optional shadow effect
+  box-shadow: 0px 16px 32px 0px rgba(30, 42, 50, 0.08);
   background-color: #fff;
-  border-radius: ${({ theme }) => theme.spacing}px;
-  height: inherit;
+  height: 100vh;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
+    height: inherit;
     height: auto;
     width: 600px;
     min-width: auto;
+    border-radius: ${({ theme }) => theme.spacing}px;
   }
 `;
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { rgba } from "polished";
 
 export const FooterWrapper = styled.div`
     display: flex;
@@ -22,11 +23,8 @@ const Button = styled.button`
     width: 100%;
     height: 100%;
     
-    &:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary};
-    }
-    `;
+
+`;
 
 
 export const ButtonWrapper = styled.div<{ hideMobile?: boolean }>`
@@ -43,18 +41,25 @@ export const CancelButtonWrapper = styled(Button)`
     border: 2px solid ${props => props.theme.colors.secondary};
     color: ${props => props.theme.colors.secondary};
     
-
     &:hover {
-        background-color: ${props => props.theme.colors.gray.primary};
+        background-color: ${({ theme }) => rgba(theme.colors.primary.default, 0.1)};
+    }
+
+    &:active {
+        background-color: ${({ theme }) => rgba(theme.colors.primary.default, 0.25)};
     }
 `;
 
 export const ContinueButtonWrapper = styled(Button)`
-    background-color: ${props => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.primary.default};
     color: #fff;
 
     &:hover {
-        background-color: ${props => props.theme.colors.secondary};
+        background-color: ${props => props.theme.colors.primary.light};
+    }
+
+    &:active {
+        background-color: ${props => props.theme.colors.primary.dark};
     }
 `;
 

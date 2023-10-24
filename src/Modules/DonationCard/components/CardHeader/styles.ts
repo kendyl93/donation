@@ -7,12 +7,12 @@ export const HeaderContainerWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: ${({ theme }) => theme.spacing * 2}px ${({ theme }) => theme.spacing * 3}px ${({ theme }) => theme.spacing * 3.5}px;
-  background-color: #FCD5CE; 
-  border-radius: 8px 8px 0 0; 
+  background-color: #FCD5CE;  
   
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
       flex-direction: row;
       padding: ${({ theme }) => theme.spacing * 4}px ${({ theme }) => theme.spacing * 5}px ${({ theme }) => theme.spacing * 3}px;
+      border-radius: 8px 8px 0 0;
   }
 `;
 
