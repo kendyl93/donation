@@ -3,7 +3,7 @@ import { useFormContent } from '../hooks';
 import { useFormState } from "../../../context/FormStateContext";
 import { calculateAccumulatedAmount, formatAmount, formatDeadline } from '../utils';
 import { formatCurrency } from '../../../../../utils';
-import { getNextMonthIndexAndYear } from '../../../utils';
+import { getNextDate } from '../../../utils';
 
 
 jest.mock("../../../context/FormStateContext");
@@ -16,7 +16,7 @@ describe("useFormContent hook", () => {
     });
 
     it("should have correct initial values", () => {
-        const {nextMonthIndex, year }  = getNextMonthIndexAndYear();
+        const [nextMonthIndex, year]  = getNextDate();
         const { result } = renderHook(() => useFormContent());
 
         expect(result.current.initialValues).toEqual({

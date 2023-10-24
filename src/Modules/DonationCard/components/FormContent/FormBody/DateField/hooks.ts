@@ -1,7 +1,7 @@
 import { useForm, useFormState as useReactFormState } from "react-final-form";
 import { MAX_VALUE } from "../../../../constants";
-import { currentMonthIndex, currentYear } from "../../../../utils";
-import { getNextMonthAndYear, setDecemberAndDeductYear } from "../utils";
+import { currentMonthIndex, currentYear, getNextMonthAndYear } from "../../../../utils";
+import { setDecemberAndDeductYear } from "../utils";
 import { calculateMonthsDiff, onlyDigits } from "../../../../../../utils";
 
 export const useDateField = () => {

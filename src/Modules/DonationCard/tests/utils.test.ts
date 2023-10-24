@@ -1,4 +1,4 @@
-import { getNextMonthIndexAndYear } from '../utils';
+import { getNextDate } from '../utils';
 
 const ORIGINAL_DATE = Date;
 
@@ -15,7 +15,7 @@ function restoreDate(): void {
   global.Date = ORIGINAL_DATE;
 }
 
-describe('getNextMonthIndexAndYear', () => {
+describe('getNextDate', () => {
 
   afterEach(() => {
     restoreDate();
@@ -24,13 +24,13 @@ describe('getNextMonthIndexAndYear', () => {
   it('returns next month when it is not December', () => {
     mockDate(2022, 10, 15); // November 15th, 2023
 
-    const result = getNextMonthIndexAndYear();
-    expect(result).toEqual({ nextMonthIndex: 11, year: 2022 });
+    const result = getNextDate();
+    expect(result).toEqual([11, 2022]);
   });
 
   it('returns January of the next year when it is December', () => {
     mockDate(2023, 11, 15); // December 15th, 2023
-    const result = getNextMonthIndexAndYear();
-    expect(result).toEqual({ nextMonthIndex: 0, year: 2024 });
+    const result = getNextDate();
+    expect(result).toEqual([0, 2024]);
   });
 });

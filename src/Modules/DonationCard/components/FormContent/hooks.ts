@@ -2,11 +2,11 @@ import { formatCurrency } from '../../../../utils';
 import { useFormState } from "../../context/FormStateContext";
 import { calculateAccumulatedAmount, formatAmount, formatDeadline } from "./utils";
 import { FormValues, FormValuesChangeArgs } from "./types";
-import { getNextMonthIndexAndYear } from '../../utils';
+import { getNextDate } from '../../utils';
 
 export const useFormContent = () => {
     const { setFormState } = useFormState();
-    const { nextMonthIndex, year } = getNextMonthIndexAndYear();
+    const [nextMonthIndex, year] = getNextDate();
     const initialValues = { amount: null, monthIndex: nextMonthIndex, year };
 
     const onSubmit = (values: FormValues) => {
