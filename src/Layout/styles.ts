@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { NAVBAR_HEIGHT } from "./components/Navbar/styles"
 
 export const LayoutWrapper = styled.div`
-    background-color: ${({ theme }) => theme.background.light});
+    background-color: ${({ theme }) => theme.colors.background.light});
     height: 100vh;
 `
 export const LayouContenttWrapper = styled.div`
