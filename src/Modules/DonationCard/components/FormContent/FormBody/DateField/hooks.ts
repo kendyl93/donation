@@ -7,13 +7,30 @@ import {
 } from "../../../../utils";
 import { setDecemberAndDeductYear } from "../utils";
 import { calculateMonthsDiff, onlyDigits } from "../../../../../../utils";
+import { useState } from "react";
+
+enum Arrows {
+  LEFT = "left",
+  RIGHT = "right",
+}
 
 export const useDateField = () => {
+  const [disabledArrowButton, setDisabledArrowButton] = useState<Arrows | null>(
+    null
+  );
   const form = useForm();
   const { values } = useReactFormState();
   const { monthIndex, year, amount } = values;
 
+  const isCurrentMonthAndYear: boolean =
+    monthIndex === currentMonthIndex + 1 && year === currentYear;
+
   const handlePrevious = (): void => {
+    if (isCurrentMonthAndYear) {
+      setDisabledArrowButton(Arrows.LEFT);
+      return;
+    }
+
     const isCurrentMonthJanuary = monthIndex === 0;
 
     if (isCurrentMonthJanuary) {
@@ -21,6 +38,8 @@ export const useDateField = () => {
     } else {
       form.change("monthIndex", monthIndex - 1);
     }
+
+    setDisabledArrowButton(null);
   };
 
   const nextTotalAmountReachedMaximum = (
@@ -42,6 +61,7 @@ export const useDateField = () => {
       amount
     );
     if (maybeNextTotalAmountReachedMaximum) {
+      setDisabledArrowButton(Arrows.RIGHT);
       return;
     }
 
@@ -50,15 +70,15 @@ export const useDateField = () => {
     if (nextYear !== year) {
       form.change("year", nextYear);
     }
+
+    setDisabledArrowButton(null);
   };
 
-  const isCurrentMonthAndYear: boolean =
-    monthIndex === currentMonthIndex + 1 && year === currentYear;
-
   return {
+    disabledArrowButtonRight: disabledArrowButton === Arrows.RIGHT,
+    disabledArrowButtonLeft: disabledArrowButton === Arrows.LEFT,
     handlePrevious,
     handleNext,
-    isCurrentMonthAndYear,
     values,
   };
 };

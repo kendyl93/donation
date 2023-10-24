@@ -3,7 +3,7 @@
 exports[`Chevron should match the snapshot with the left direction 1`] = `
 <DocumentFragment>
   <div
-    class="sc-bdnyFh gmKfIu"
+    class="sc-bdnyFh gepbbD"
   >
     <svg
       fill="none"
@@ -25,7 +25,7 @@ exports[`Chevron should match the snapshot with the left direction 1`] = `
 exports[`Chevron should match the snapshot with the right direction 1`] = `
 <DocumentFragment>
   <div
-    class="sc-bdnyFh sc-gtsqUy gmKfIu hqoiGy"
+    class="sc-bdnyFh sc-gtsqUy gepbbD hqoiGy"
   >
     <svg
       fill="none"

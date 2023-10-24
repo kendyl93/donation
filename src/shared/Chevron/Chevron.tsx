@@ -7,14 +7,18 @@ export enum DIRECTIONS {
 
 type ChevronProps = {
   direction?: DIRECTIONS;
+  disabled?: boolean;
 };
 
-export const Chevron = ({ direction = DIRECTIONS.LEFT }: ChevronProps) => {
+export const Chevron = ({
+  disabled,
+  direction = DIRECTIONS.LEFT,
+}: ChevronProps) => {
   const Wrapper =
     direction === DIRECTIONS.RIGHT ? ChevronRightWrapper : ChevronLeftWrapper;
 
   return (
-    <Wrapper>
+    <Wrapper disabled={disabled}>
       <svg
         role="img"
         width="24"
