@@ -9,7 +9,7 @@ export const setDecemberAndDeductYear = (form: any, selectedYear: number) => {
 
 export const withoutFormatting = (form: any) => (formattedValue: string) => {
     const withoutFormatting = onlyDigits(formattedValue);
-
+debugger;
     if (withoutFormatting) {
         form.change('amount', withoutFormatting);
     }

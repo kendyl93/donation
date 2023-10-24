@@ -32,8 +32,8 @@ export const formatDecimal = (value: number): string => {
         style: 'decimal',
         minimumFractionDigits: 0
     });
-
-    return formatter.format(value);
+    
+    return formatter.format(onlyDigits(value));;
 };
 
 export const formatCurrency = (value: number): string => {

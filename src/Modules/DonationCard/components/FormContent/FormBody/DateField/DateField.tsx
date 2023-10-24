@@ -11,7 +11,7 @@ export const DateField = () => {
         handleNext,
         isCurrentMonthAndYear,
         values: { monthIndex, year } = {}
-    } = useDateField()
+    } = useDateField();
 
     return (
         <Field label="Every month until">

@@ -26,6 +26,8 @@ export const useFormContent = () => {
             amount: formatCurrency(accumulatedAmount)
         });
 
+        debugger;
+
         return values;
     }
 

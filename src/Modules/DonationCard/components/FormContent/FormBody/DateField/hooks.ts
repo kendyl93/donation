@@ -8,6 +8,7 @@ export const useDateField = () => {
     const form = useForm();
     const { values } = useReactFormState();
     const { monthIndex, year, amount } = values;
+    debugger;
 
     const handlePrevious = (): void => {
         const isCurrentMonthJanuary = monthIndex === 0
@@ -29,11 +30,10 @@ export const useDateField = () => {
     const handleNext = (): void => {
         const [nextMonthIndex, nextYear] = getNextMonthAndYear(monthIndex, year);
         const maybeNextTotalAmountReachedMaximum = nextTotalAmountReachedMaximum(nextMonthIndex, nextYear, amount)
-
         if (maybeNextTotalAmountReachedMaximum) {
             return;
         }
-
+        
         form.change('monthIndex', nextMonthIndex);
         form.change('year', nextYear);
     };
