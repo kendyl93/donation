@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ellipsisOverflow } from "../../../../styles/mixins";
 
 export const TotalAmountWrapper = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ export const LabelWrapper = styled.div`
   font-size: ${({ theme }) => theme.font.baseSize * 2.5}px;
   color: ${({ theme }) => theme.colors.gray.dark};
   font-weight: 500;
+  ${ellipsisOverflow()}
 `;
 
 export const AmountWrapper = styled.span`
@@ -23,4 +25,5 @@ export const AmountWrapper = styled.span`
   color: ${({ theme }) => theme.colors.secondary};
   font-style: normal;
   line-height: 1.2;
+  ${ellipsisOverflow()}
 `;

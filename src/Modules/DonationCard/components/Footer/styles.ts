@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { rgba } from "polished";
+import { ellipsisOverflow } from "../../../../styles/mixins";
 
 export const FooterWrapper = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ const Button = styled.button`
   line-height: 1.25;
   width: 100%;
   height: 100%;
+  ${ellipsisOverflow()}
 `;
 
 export const ButtonWrapper = styled.div<{ hideMobile?: boolean }>`
