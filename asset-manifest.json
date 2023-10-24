@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/donation/static/js/main.6a25a6c1.js",
+    "static/js/787.138e1f8f.chunk.js": "/donation/static/js/787.138e1f8f.chunk.js",
+    "static/media/logo.svg": "/donation/static/media/logo.938c3e3b02306c73fae6cf222c33c7bc.svg",
+    "static/media/giving-block.svg": "/donation/static/media/giving-block.eb44dca3060dae26510d1d75acf6821c.svg",
+    "index.html": "/donation/index.html",
+    "main.6a25a6c1.js.map": "/donation/static/js/main.6a25a6c1.js.map",
+    "787.138e1f8f.chunk.js.map": "/donation/static/js/787.138e1f8f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.6a25a6c1.js"
+  ]
+}
