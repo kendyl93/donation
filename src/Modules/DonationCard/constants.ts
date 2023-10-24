@@ -8,7 +8,6 @@ export const MAX_VALUE_LENGTH = 6;
 
 export const locale = {
     US: {
-        currencySign: '$',
         currency: 'USD',
         code: 'en-US'
     }

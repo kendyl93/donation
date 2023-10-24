@@ -1,5 +1,6 @@
+import { Theme } from "./types";
 
-const theme = {
+const theme: Theme = {
     spacing: 8,
     font: {
         family: {

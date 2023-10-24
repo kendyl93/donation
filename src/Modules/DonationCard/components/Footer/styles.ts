@@ -32,7 +32,7 @@ export const ButtonWrapper = styled.div<{ hideMobile?: boolean }>`
     padding: ${({ theme }) => theme.spacing}px;
 
     @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}){
-        display:  ${({ hideMobile }) => hideMobile ? 'none' : 'block'};
+        display:  ${(props) => props.hideMobile ? 'none' : 'block'};
     }
 `;
 

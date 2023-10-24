@@ -1,2 +1,4 @@
-export const currentMonthIndex = new Date().getMonth();
-export const currentYear = new Date().getFullYear();
+const today = new Date();
+
+export const currentMonthIndex = today.getMonth();
+export const currentYear = today.getFullYear();

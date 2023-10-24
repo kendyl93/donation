@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chevron should match the snapshot with the left direction 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdnyFh hbuRUu"
+  >
+    <svg
+      fill="none"
+      height="24"
+      role="img"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M14 18L8 12L14 6L15.4 7.4L10.8 12L15.4 16.6L14 18Z"
+        fill="#4D6475"
+      />
+    </svg>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Chevron should match the snapshot with the right direction 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdnyFh sc-gtsqUy hbuRUu hqoiGy"
+  >
+    <svg
+      fill="none"
+      height="24"
+      role="img"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M14 18L8 12L14 6L15.4 7.4L10.8 12L15.4 16.6L14 18Z"
+        fill="#4D6475"
+      />
+    </svg>
+  </div>
+</DocumentFragment>
+`;
