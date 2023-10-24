@@ -13,6 +13,7 @@ export const CloseButtonWrapper = styled.div`
     &:hover,
     &:active {
       cursor: pointer;
-      background-color: ${({ theme }) => rgba(theme.colors.primary.default, 0.2)};
+      background-color: ${({ theme }) =>
+        rgba(theme.colors.primary.default, 0.2)};
     }
 `;

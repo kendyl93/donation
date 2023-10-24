@@ -5,7 +5,6 @@ import {
   formatDeadline,
 } from "../utils";
 
-// Mocking the necessary utilities
 jest.mock("../../../../../utils", () => ({
   calculateMonthsDiff: jest.fn(),
   onlyDigits: jest.fn(),

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FieldWrapper = styled.div`
   display: flex;
@@ -16,4 +16,3 @@ export const LabelWrapper = styled.label`
   line-height: ${({ theme }) => theme.font.baseSize * 2.25}px;
   padding-bottom: ${({ theme }) => theme.spacing * 0.75}px;
 `;
-

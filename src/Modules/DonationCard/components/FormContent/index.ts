@@ -1,1 +1,1 @@
-export * from './FormContent'
+export * from "./FormContent";

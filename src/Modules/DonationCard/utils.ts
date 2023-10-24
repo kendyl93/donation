@@ -1,19 +1,21 @@
 export const currentMonthIndex = new Date().getMonth();
-export const currentYear = new Date().getFullYear()
+export const currentYear = new Date().getFullYear();
 
-export const getNextMonthAndYear = (monthIndex: number, year: number): number[] => {
-    let nextMonthIndex: number = monthIndex + 1;
-    let nextYear: number = year;
-    const isDecember = monthIndex === 11;
+export const getNextMonthAndYear = (
+  monthIndex: number,
+  year: number
+): number[] => {
+  let nextMonthIndex: number = monthIndex + 1;
+  let nextYear: number = year;
+  const isDecember = monthIndex === 11;
 
-    if (isDecember) {
-        nextMonthIndex = 0;
-        nextYear = year + 1;
-    }
+  if (isDecember) {
+    nextMonthIndex = 0;
+    nextYear = year + 1;
+  }
 
-    return [nextMonthIndex, nextYear]
-}
-
+  return [nextMonthIndex, nextYear];
+};
 
 export const getNextDate = (): number[] => {
   const today = new Date();
@@ -21,5 +23,5 @@ export const getNextDate = (): number[] => {
   const currentMonthIndex = today.getMonth();
   const currentYear = today.getFullYear();
 
-  return getNextMonthAndYear(currentMonthIndex, currentYear)
-}
+  return getNextMonthAndYear(currentMonthIndex, currentYear);
+};

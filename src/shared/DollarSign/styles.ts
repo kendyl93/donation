@@ -6,4 +6,4 @@ export const DollarSignWrapper = styled.div`
   justify-content: center;
   height: 40px;
   padding: 0 ${({ theme }) => theme.spacing}px;
-`
+`;

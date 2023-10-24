@@ -1,10 +1,9 @@
 export type FormValues = {
-    amount: number | null;
-    monthIndex: number;
-    year: number;
+  amount: number | null;
+  monthIndex: number;
+  year: number;
 };
 
-
 export type FormValuesChangeArgs = {
-    values: FormValues
+  values: FormValues;
 };

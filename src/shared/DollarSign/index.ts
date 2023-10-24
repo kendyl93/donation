@@ -1,1 +1,1 @@
-export * from './DollarSign'
+export * from "./DollarSign";

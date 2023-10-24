@@ -1,9 +1,9 @@
 import { HeaderWrapper } from "./styles";
 
 type HeaderProps = {
-    children: string;
-}
+  children: string;
+};
 
 export const Header: React.FC<HeaderProps> = ({ children }) => {
-    return <HeaderWrapper>{children}</HeaderWrapper>
-}
+  return <HeaderWrapper>{children}</HeaderWrapper>;
+};

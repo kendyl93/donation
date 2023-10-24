@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TotalAmountWrapper = styled.div`
   display: flex;
