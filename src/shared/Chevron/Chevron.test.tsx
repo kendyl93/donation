@@ -1,7 +1,6 @@
-import React from 'react';
 import { screen } from '@testing-library/react';
 import { Chevron, DIRECTIONS } from './Chevron';
-import { renderWithTheme } from '../../tests/utils';
+import { renderWithTheme } from '../../tests/utils'
 
 describe('Chevron', () => {
   it('should match the snapshot with the left direction', () => {

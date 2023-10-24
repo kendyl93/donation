@@ -1,7 +1,11 @@
-import { regex, isNumber, calculateMonthsDiff, onlyDigits, formatDecimal, formatCurrency } from './path-to-your-module';
-import { currentMonthIndex, currentYear } from "./Modules/DonationCard/utils";
+import { mockDate, restoreDate } from '../tests/utils';
+import { isNumber, calculateMonthsDiff, onlyDigits, formatDecimal, formatCurrency } from '../utils';
+
 
 describe("Utility functions", () => {
+    afterEach(() => {
+        restoreDate();
+    });
 
   describe("isNumber", () => {
     it("should return true for valid numbers", () => {
@@ -18,12 +22,17 @@ describe("Utility functions", () => {
   });
 
   describe("calculateMonthsDiff", () => {
-    it("should calculate the difference in months correctly", () => {
-      const result = calculateMonthsDiff(11, currentYear); // assuming currentMonthIndex is 0
-      expect(result).toBe(11);
+    it("should calculate the difference in months correctly and return 22", () => {
+      mockDate(2022, 1, 1);
+      const result = calculateMonthsDiff(11, 2023); 
+      expect(result).toBe(22);
     });
 
-    // Add more tests as needed
+    it("should calculate the difference in months correctly and return 0", () => {
+      mockDate(2022, 0, 1);
+      const result = calculateMonthsDiff(0, 2022); 
+      expect(result).toBe(0);
+    });
   });
 
   describe("onlyDigits", () => {

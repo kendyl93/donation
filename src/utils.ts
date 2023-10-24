@@ -15,6 +15,9 @@ export const isNumber = (value: any) => {
 }
 
 export const calculateMonthsDiff = (monthIndex: number, year: number): number => {
+    const currentMonthIndex = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+
     return (year - currentYear) * 12 + monthIndex - currentMonthIndex;
 };
 
