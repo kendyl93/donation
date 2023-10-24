@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 import { useCurrencyField } from "../hooks";
 import { useForm, useFormState } from "react-final-form";
-import { formMock } from "../../../../../../../tests/mocks/form";
+import { mockForm } from "../../../../../../../tests/mocks/form";
 
 jest.mock("react-final-form", () => {
   return {
@@ -12,7 +12,7 @@ jest.mock("react-final-form", () => {
 
 describe("useCurrencyField hook", () => {
   beforeEach(() => {
-    (useForm as jest.Mock).mockReturnValue(formMock);
+    (useForm as jest.Mock).mockReturnValue(mockForm);
     (useFormState as jest.Mock).mockReturnValue({
       values: { amount: "1234" },
     });

@@ -46,7 +46,10 @@ export const useDateField = () => {
     }
 
     form.change("monthIndex", nextMonthIndex);
-    form.change("year", nextYear);
+
+    if (nextYear !== year) {
+      form.change("year", nextYear);
+    }
   };
 
   const isCurrentMonthAndYear: boolean =
