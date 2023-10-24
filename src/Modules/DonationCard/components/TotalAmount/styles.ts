@@ -18,12 +18,14 @@ export const LabelWrapper = styled.div`
   ${ellipsisOverflow()}
 `;
 
-export const AmountWrapper = styled.span`
+export const AmountWrapper = styled.div`
   font-family: ${({ theme }) => theme.font.family.inter};
   font-weight: 700;
   font-size: ${({ theme }) => theme.font.baseSize * 4}px;
   color: ${({ theme }) => theme.colors.secondary};
   font-style: normal;
   line-height: 1.2;
-  ${ellipsisOverflow()}
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
 `;
