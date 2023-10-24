@@ -23,6 +23,7 @@ export interface Theme {
             superDark: string;
         };
         background: {
+            header: string;
             light: string,
             primary: string
         };

@@ -25,6 +25,7 @@ const theme: Theme = {
             superDark: '#4D6475'
         },
         background: {
+            header: '#FCD5CE',
             light: '#f2f2f2',
             primary:'#f0f0f0'
         },
