@@ -24,7 +24,10 @@ const theme: Theme = {
             dark: '#1E2A32',
             superDark: '#4D6475'
         },
-        background: '#f0f0f0',
+        background: {
+            light: '#f2f2f2',
+            primary:'#f0f0f0'
+        },
         hover: '#F3F5FE',
         active: '#E8EAF2'
     },

@@ -1,6 +1,5 @@
-import { MAX_VALUE, monthNames } from "../../constants";
 import { currentMonthIndex, currentYear } from '../../utils';
-import { formatCurrency, onlyDigits } from '../../../../utils';
+import { formatCurrency } from '../../../../utils';
 import { useFormState } from "../../context/FormStateContext";
 import { calculateAccumulatedAmount, formatAmount, formatDeadline } from "./utils";
 import { FormValues, FormValuesChangeArgs } from "./types";

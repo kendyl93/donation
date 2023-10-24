@@ -7,7 +7,7 @@ export const CardWrapper = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
     height: 100%;
-    background-color: ${({ theme }) => theme.colors.background};
+    background-color: ${({ theme }) => theme.colors.background.primary};
   }
 `;
 

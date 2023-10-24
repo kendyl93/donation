@@ -22,7 +22,10 @@ export interface Theme {
             dark: string;
             superDark: string;
         };
-        background: string;
+        background: {
+            light: string,
+            primary: string
+        };
         hover: string;
         active: string;
     };
