@@ -7,7 +7,7 @@ export const regex = {
   wholeNumbersOnly: /^\d+$/,
 };
 
-export const isNumber = (value: any) => {
+export const isNumber = (value: number | string | undefined | null) => {
   const strippedValue = String(value).replace(/,/g, "");
 
   return (
