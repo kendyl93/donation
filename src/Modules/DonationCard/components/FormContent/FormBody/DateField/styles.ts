@@ -10,14 +10,8 @@ export const SelectorWrapper = styled.div`
   padding: ${({ theme }) => theme.spacing * 1.5}px;
 `;
 
-const MonthDisplayWrapper = styled.div`
-  flex: 1;
+export const YearDisplayWrapper = styled.div`
   text-align: center;
-  padding: 10px 0;
-  font-size: 1.2em;
-`;
-
-export const YearDisplayWrapper = styled(MonthDisplayWrapper)`
   font-size: ${({ theme }) => theme.font.baseSize * 1.5}px;
 `;
 

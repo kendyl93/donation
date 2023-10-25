@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Field } from 'react-final-form';
+import styled from "styled-components";
+import { Field } from "react-final-form";
 
 export const StyledField = styled(Field)`
   color: ${({ theme }) => theme.colors.secondary};
@@ -11,24 +11,22 @@ export const StyledField = styled(Field)`
   padding: ${({ theme }) => theme.spacing * 2}px;
   padding-left: 0;
   width: 100%;
-
 `;
 
-
 export const InputWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    border: 2px solid ${({ theme }) => theme.colors.gray.superLight};
-    border-radius: ${({ theme }) => theme.spacing * 1.25}px;
-    overflow: hidden;
-    margin-bottom: ${({ theme }) => theme.spacing * 2}px;
-    transition: border-color .1s ease-in;
+  display: flex;
+  align-items: center;
+  border: 2px solid ${({ theme }) => theme.colors.gray.superLight};
+  border-radius: ${({ theme }) => theme.spacing * 1.25}px;
+  overflow: hidden;
+  margin-bottom: ${({ theme }) => theme.spacing * 2}px;
+  transition: border-color 0.1s ease-in;
 
-    @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}){
-      margin-bottom: 0;
-    }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    margin-bottom: 0;
+  }
 
-    &:focus-within {
-      border-color: ${({ theme }) => theme.colors.primary.default};
-    }
+  &:focus-within {
+    border-color: ${({ theme }) => theme.colors.primary.default};
+  }
 `;
