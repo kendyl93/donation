@@ -2,7 +2,7 @@
 
 ## Production ready build
 
-Production ready build is available on [http://kendyl93.github.io/donation](here).
+Production ready build is available on [here]http://kendyl93.github.io/donation).
 
 ## Used libraries:
 
