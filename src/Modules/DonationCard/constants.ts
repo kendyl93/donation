@@ -13,7 +13,6 @@ export const monthNames = [
   "December",
 ];
 
-export const MAX_VALUE = 1000000;
 export const MAX_VALUE_LENGTH = 6;
 
 export const locale = {

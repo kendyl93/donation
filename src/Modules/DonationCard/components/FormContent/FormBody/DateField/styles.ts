@@ -11,10 +11,10 @@ export const SelectorWrapper = styled.div`
 `;
 
 const MonthDisplayWrapper = styled.div`
-  flex: 1; // Take maximum available space
+  flex: 1;
   text-align: center;
-  padding: 10px 0; // Top and bottom padding
-  font-size: 1.2em; // Slightly larger text for month
+  padding: 10px 0;
+  font-size: 1.2em;
 `;
 
 export const YearDisplayWrapper = styled(MonthDisplayWrapper)`
