@@ -1,8 +1,8 @@
 import { renderHook, act } from "@testing-library/react";
-import { mockDate, restoreDate } from "../../../../../../../tests/utils";
+import { mockDate, restoreDate } from "../../../../../../../testSetup/utils";
 import { useDateField } from "../hooks";
 import { useForm, useFormState } from "react-final-form";
-import { mockForm } from "../../../../../../../tests/mocks/form";
+import { mockForm } from "../../../../../../../testSetup/mocks/form";
 
 jest.mock("react-final-form", () => {
   return {

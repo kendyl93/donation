@@ -1,6 +1,6 @@
 # Pawel Stanecki
 
-# Production ready
+## Production ready build
 
 Production ready build is available on [http://kendyl93.github.io/donation](here).
 
@@ -8,7 +8,7 @@ Production ready build is available on [http://kendyl93.github.io/donation](here
 
 - `styled-components` - I decided to use it since it is an easy and convinient way to create, manage and share components style.
 - `react-final-form` - This might be an overkill to use that library for such a small form, however thanks to its hooks I can easily share form state across all Form children without passing it as props. It just helped me saving some time to implement it from scrach.
-- `react0testing-library` - used to write unit tests
+- `react-testing-library` - used to write unit tests. There is no 100% code coverage. I have created unit tests only for some most important logic and a few components. I created also some snapshot testing. Unit tests are for the developer but I wanted to create some basic snapshots to show that I am using it in the daily basis.
 
 # Getting Started with Create React App
 

@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 import { useCurrencyField } from "../hooks";
 import { useForm, useFormState } from "react-final-form";
-import { mockForm } from "../../../../../../../tests/mocks/form";
+import { mockForm } from "../../../../../../../testSetup/mocks/form";
 
 jest.mock("react-final-form", () => {
   return {
